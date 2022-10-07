@@ -1,1 +1,6 @@
-Hello World
+package {{.PackageName}}
+
+
+{{range .TestCases }}
+        func {{.Name}}(){}
+{{end}}

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fetch := fetcher.NewFetcher("../../templates/docs.json")
+	fetch := fetcher.NewFetcher("templates/docs.json")
 	jsonSwagger := fetch.JsonParser()
 	testGenerator := generator.NewGenerator()
 	testGenerator.GenerateTestFiles(jsonSwagger)

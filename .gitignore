@@ -12,3 +12,5 @@
 vendor/ 
 # ignoring Json Files
 *.json
+# ignoring generated
+generated/

@@ -11,6 +11,5 @@ type Api struct {
 }
 
 type TestCase struct {
-	Name      string
-	Responses []string
+	Name string
 }

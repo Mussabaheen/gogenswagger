@@ -3,5 +3,5 @@ test:
 	go test ./... -p 1
 
 run:
-	$(info 🧪 Running all the tests)
+	$(info 🧪 Running the gogenapi)
 	go run cmd/go-test-api/main.go
