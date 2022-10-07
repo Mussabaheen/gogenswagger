@@ -1,4 +1,4 @@
-# gogenapi
+# gogenswagger
 
 This library generates test cases on the basis of swagger json
 
