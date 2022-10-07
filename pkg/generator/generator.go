@@ -95,7 +95,7 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 	}
 
 	for _, Api := range apiTest.Apis {
-		fileName := "templates/httpTest.tmpl"
+		fileName := "internals/httpTest.tmpl"
 		tmpl := template.Must(template.New("").Funcs(sprig.FuncMap()).ParseFiles(fileName))
 		var processed bytes.Buffer
 		err := tmpl.ExecuteTemplate(&processed, "httpTest.tmpl", Api)
