@@ -1,7 +1,7 @@
 package generator
 
 type ApiTest struct {
-	Apis []Api
+	Apis map[string]Api
 }
 
 type Api struct {

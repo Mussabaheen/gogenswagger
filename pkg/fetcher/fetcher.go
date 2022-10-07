@@ -17,7 +17,7 @@ func NewFetcher(fileLocation string) *Fetcher {
 	}
 }
 
-func (f *Fetcher) JsonParser() SwaggerJson {
+func (f *Fetcher) JsonParser() *SwaggerJson {
 	jsonFile, err := os.Open(f.fileLocation)
 	if err != nil {
 		panic(err)
@@ -36,6 +36,5 @@ func (f *Fetcher) JsonParser() SwaggerJson {
 	if err != nil {
 		panic(err)
 	}
-
-	return swagger
+	return &swagger
 }
