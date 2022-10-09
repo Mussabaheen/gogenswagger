@@ -11,5 +11,6 @@ type Api struct {
 }
 
 type TestCase struct {
-	Name string
+	Name        string
+	Description string
 }

@@ -34,7 +34,10 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 			tempTestCase := apiTest.Apis[swaggerJson.Paths[k].Get.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Get.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name: "Test" + strings.ReplaceAll(swaggerJson.Paths[k].Get.OperationID, "-", "_") + "Returns" + key})
+					Name:        "Test" + "Get" + strings.ReplaceAll(swaggerJson.Paths[k].Get.OperationID, "-", "_") + "Returns" + key,
+					Description: swaggerJson.Paths[k].Get.Description,
+				})
+
 			}
 
 			apiTest.Apis[swaggerJson.Paths[k].Get.Tags[0]] = Api{
@@ -47,7 +50,9 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 			tempTestCase := apiTest.Apis[swaggerJson.Paths[k].Put.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Put.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name: "Test" + strings.ReplaceAll(swaggerJson.Paths[k].Put.OperationID, "-", "_") + "Returns" + key})
+					Name:        "Test" + "Put" + strings.ReplaceAll(swaggerJson.Paths[k].Put.OperationID, "-", "_") + "Returns" + key,
+					Description: swaggerJson.Paths[k].Put.Description,
+				})
 			}
 			apiTest.Apis[swaggerJson.Paths[k].Put.Tags[0]] = Api{
 				PackageName: swaggerJson.Paths[k].Put.Tags[0],
@@ -59,7 +64,9 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 			tempTestCase := apiTest.Apis[swaggerJson.Paths[k].Delete.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Delete.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name: "Test" + strings.ReplaceAll(swaggerJson.Paths[k].Delete.OperationID, "-", "_") + "Returns" + key})
+					Name:        "Test" + "Delete" + strings.ReplaceAll(swaggerJson.Paths[k].Delete.OperationID, "-", "_") + "Returns" + key,
+					Description: swaggerJson.Paths[k].Delete.Description,
+				})
 			}
 			apiTest.Apis[swaggerJson.Paths[k].Delete.Tags[0]] = Api{
 				PackageName: swaggerJson.Paths[k].Delete.Tags[0],
@@ -71,7 +78,9 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 			tempTestCase := apiTest.Apis[swaggerJson.Paths[k].Post.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Post.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name: "Test" + strings.ReplaceAll(swaggerJson.Paths[k].Post.OperationID, "-", "_") + "Returns" + key})
+					Name:        "Test" + "Post" + strings.ReplaceAll(swaggerJson.Paths[k].Post.OperationID, "-", "_") + "Returns" + key,
+					Description: swaggerJson.Paths[k].Post.Description,
+				})
 			}
 			apiTest.Apis[swaggerJson.Paths[k].Post.Tags[0]] = Api{
 				PackageName: swaggerJson.Paths[k].Post.Tags[0],
@@ -83,7 +92,9 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 			tempTestCase := apiTest.Apis[swaggerJson.Paths[k].Update.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Update.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name: "Test" + strings.ReplaceAll(swaggerJson.Paths[k].Update.OperationID, "-", "_") + "Returns" + key})
+					Name:        "Test" + "Update" + strings.ReplaceAll(swaggerJson.Paths[k].Update.OperationID, "-", "_") + "Returns" + key,
+					Description: swaggerJson.Paths[k].Update.Description,
+				})
 			}
 
 			apiTest.Apis[swaggerJson.Paths[k].Update.Tags[0]] = Api{
@@ -95,10 +106,10 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 	}
 
 	for _, Api := range apiTest.Apis {
-		fileName := "internals/httpTest.tmpl"
+		fileName := "internals/golang.tmpl"
 		tmpl := template.Must(template.New("").Funcs(sprig.FuncMap()).ParseFiles(fileName))
 		var processed bytes.Buffer
-		err := tmpl.ExecuteTemplate(&processed, "httpTest.tmpl", Api)
+		err := tmpl.ExecuteTemplate(&processed, "golang.tmpl", Api)
 		if err != nil {
 			log.Fatalf("Unable to parse data into template: %v\n", err)
 		}
