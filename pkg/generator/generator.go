@@ -128,7 +128,13 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 			log.Fatalf("could not save file %v\n", err)
 		}
 		w := bufio.NewWriter(f)
-		w.WriteString(string(formatted))
-		w.Flush()
+		_, err = w.WriteString(string(formatted))
+		if err != nil {
+			log.Fatalf("could not write file %v\n", err)
+		}
+		err = w.Flush()
+		if err != nil {
+			log.Fatalf("could not flush file %v\n", err)
+		}
 	}
 }

@@ -3,7 +3,7 @@ package fetcher
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 )
 
@@ -25,7 +25,7 @@ func (f *Fetcher) JsonParser() *SwaggerJson {
 	fmt.Println("file loaded succesfully!")
 	defer jsonFile.Close()
 
-	byteValue, err := ioutil.ReadAll(jsonFile)
+	byteValue, err := io.ReadAll(jsonFile)
 	if err != nil {
 		panic(err)
 	}
