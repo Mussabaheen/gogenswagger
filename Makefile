@@ -24,3 +24,5 @@ clean:
 
 init-hooks:
 	@cp -a hooks/. .git/hooks/
+
+pre-commit: format lint test build
