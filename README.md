@@ -8,11 +8,18 @@ Place the swagger json file in `./templates` folder as `docs.json`
 
 ## Usage
 
+```bash
+gogenswagger [template path] [swagger json path]
+```
+
 ### Running the code
+
 ```bash
 make run
 ```
+
 ### Running the linter
+
 ```bash
 make lint
 ```
