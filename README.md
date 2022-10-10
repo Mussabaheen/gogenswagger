@@ -8,8 +8,13 @@ Place the swagger json file in `./templates` folder as `docs.json`
 
 ## Usage
 
+### Running the code
 ```bash
 make run
+```
+### Running the linter
+```bash
+make lint
 ```
 
 ## Supported Programming Languages
