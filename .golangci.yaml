@@ -11,4 +11,3 @@ linters:
     - unused
     - varcheck
     - gofmt
-    - revive
