@@ -19,10 +19,15 @@ type Data struct {
 	FunctionName string
 }
 type Generator struct {
+	template     string
+	outputFolder string
 }
 
-func NewGenerator() *Generator {
-	return &Generator{}
+func NewGenerator(templatePath string, outputDestination string) *Generator {
+	return &Generator{
+		template:     templatePath,
+		outputFolder: outputDestination,
+	}
 }
 
 func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
@@ -106,10 +111,10 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 	}
 
 	for _, Api := range apiTest.Apis {
-		fileName := "internals/golang.tmpl"
+		fileName := G.template
 		tmpl := template.Must(template.New("").Funcs(sprig.FuncMap()).ParseFiles(fileName))
 		var processed bytes.Buffer
-		err := tmpl.ExecuteTemplate(&processed, "golang.tmpl", Api)
+		err := tmpl.ExecuteTemplate(&processed, G.template, Api)
 		if err != nil {
 			log.Fatalf("Unable to parse data into template: %v\n", err)
 		}
@@ -117,11 +122,11 @@ func (G *Generator) GenerateTestFiles(swaggerJson *fetcher.SwaggerJson) {
 		if err != nil {
 			log.Fatalf("Could not format processed template: %v\n", err)
 		}
-		directoryPath := "generated/" + Api.PackageName + "/"
+		directoryPath := G.outputFolder + Api.PackageName + "/"
 		if err := os.MkdirAll(directoryPath, os.ModePerm); err != nil {
 			log.Fatalf("Could not create directories : %v \n", err)
 		}
-		outputPath := directoryPath + Api.FileName
+		outputPath := G.outputFolder + Api.FileName
 		fmt.Println("Writing file: ", outputPath)
 		f, err := os.Create(outputPath)
 		if err != nil {

@@ -1,6 +1,6 @@
 test:
-	$(info 🧪 Running all the tests)
-	go test ./... -p 1
+	$(info 🧪 Testing...)
+	go test ./... -short
 
 run:
 	$(info 🧪 Running the gogenapi)
@@ -9,3 +9,18 @@ run:
 lint:
 	$(info 🧪 Checking the lint)
 	golangci-lint run ./...
+
+format:
+	$(info 🖊️ formatting...)
+	@go fmt ./...
+
+
+build: clean init-hooks
+	$(info 📦 Building...)
+	go build -o build/ ./...
+
+clean:
+	rm -rf ./build/* 
+
+init-hooks:
+	@cp -a hooks/. .git/hooks/
