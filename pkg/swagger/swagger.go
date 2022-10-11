@@ -1,4 +1,5 @@
-package fetcher
+// Package swagger reads the swagger json file.
+package swagger
 
 import (
 	"encoding/json"

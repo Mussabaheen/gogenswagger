@@ -1,4 +1,4 @@
-module github.com/Mussabaheen/gotestapi
+module github.com/Mussabaheen/gogenswagger
 
 go 1.18
 
@@ -12,5 +12,7 @@ require (
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
+	github.com/stretchr/testify v1.8.0 // indirect
 	golang.org/x/crypto v0.0.0-20221005025214-4161e89ecf1b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

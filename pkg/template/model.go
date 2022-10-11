@@ -1,10 +1,10 @@
-package generator
+package template
 
-type ApiTest struct {
-	Apis map[string]Api
+type GeneratedTest struct {
+	GeneratedTests map[string]Test
 }
 
-type Api struct {
+type Test struct {
 	PackageName string
 	FileName    string
 	TestCases   []TestCase
