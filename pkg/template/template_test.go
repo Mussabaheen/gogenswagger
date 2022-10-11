@@ -22,9 +22,6 @@ func TestGenerator_GenerateTestFiles(t *testing.T) {
 					Responses: map[string]swagger.Response{
 						"200": {
 							Description: "success",
-							Schema: swagger.Schema{
-								Ref: "successfull",
-							},
 						},
 					},
 				},

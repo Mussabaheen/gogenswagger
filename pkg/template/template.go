@@ -1,3 +1,4 @@
+// Package template uses the test cases to add them into the chosen template
 package template
 
 import (
@@ -16,10 +17,11 @@ import (
 )
 
 type Template struct {
-	templatePath string
-	outputFolder string
+	templatePath string // templatePath represents the path of the template being used
+	outputFolder string // outputFolder represents the folder for the generated test cases
 }
 
+// NewTemplate creates a new Template service
 func NewTemplate(templatePath string, outputDestination string) *Template {
 	return &Template{
 		templatePath: templatePath,
@@ -27,6 +29,7 @@ func NewTemplate(templatePath string, outputDestination string) *Template {
 	}
 }
 
+// GenerateTestFiles generates the test files using the provided template
 func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 	apiTest := GeneratedTest{
 		GeneratedTests: make(map[string]Test),
