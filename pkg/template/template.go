@@ -8,29 +8,26 @@ import (
 	"html/template"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/Masterminds/sprig"
 	"github.com/Mussabaheen/gogenswagger/pkg/swagger"
 )
 
-type Data struct {
-	PackageName  string
-	FunctionName string
-}
-type Generator struct {
-	template     string
+type Template struct {
+	templatePath string
 	outputFolder string
 }
 
-func NewGenerator(templatePath string, outputDestination string) *Generator {
-	return &Generator{
-		template:     templatePath,
+func NewGenerator(templatePath string, outputDestination string) *Template {
+	return &Template{
+		templatePath: templatePath,
 		outputFolder: outputDestination,
 	}
 }
 
-func (G *Generator) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
+func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 	apiTest := GeneratedTest{
 		GeneratedTests: make(map[string]Test),
 	}
@@ -111,10 +108,10 @@ func (G *Generator) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 	}
 
 	for _, Api := range apiTest.GeneratedTests {
-		fileName := G.template
-		tmpl := template.Must(template.New("").Funcs(sprig.FuncMap()).ParseFiles(fileName))
+		fileName := filepath.Base(T.templatePath)
+		tmpl := template.Must(template.New("").Funcs(sprig.FuncMap()).ParseFiles(T.templatePath))
 		var processed bytes.Buffer
-		err := tmpl.ExecuteTemplate(&processed, G.template, Api)
+		err := tmpl.ExecuteTemplate(&processed, fileName, Api)
 		if err != nil {
 			log.Fatalf("Unable to parse data into template: %v\n", err)
 		}
@@ -122,11 +119,11 @@ func (G *Generator) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 		if err != nil {
 			log.Fatalf("Could not format processed template: %v\n", err)
 		}
-		directoryPath := G.outputFolder + Api.PackageName + "/"
+		directoryPath := T.outputFolder + "/" + Api.PackageName + "/"
 		if err := os.MkdirAll(directoryPath, os.ModePerm); err != nil {
 			log.Fatalf("Could not create directories : %v \n", err)
 		}
-		outputPath := G.outputFolder + Api.FileName
+		outputPath := directoryPath + Api.FileName
 		fmt.Println("Writing file: ", outputPath)
 		f, err := os.Create(outputPath)
 		if err != nil {

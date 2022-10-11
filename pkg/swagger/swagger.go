@@ -8,17 +8,17 @@ import (
 	"os"
 )
 
-type Fetcher struct {
+type Swagger struct {
 	fileLocation string
 }
 
-func NewFetcher(fileLocation string) *Fetcher {
-	return &Fetcher{
+func NewSwagger(fileLocation string) *Swagger {
+	return &Swagger{
 		fileLocation: fileLocation,
 	}
 }
 
-func (f *Fetcher) JsonParser() *SwaggerJson {
+func (f *Swagger) JsonParser() *SwaggerJson {
 	jsonFile, err := os.Open(f.fileLocation)
 	if err != nil {
 		panic(err)

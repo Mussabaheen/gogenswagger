@@ -20,7 +20,7 @@ func main() {
 		log.Fatalf("Swagger json not provided, please provide Swagger JSON file")
 	}
 
-	fetch := swagger.NewFetcher(jsonFile)
+	fetch := swagger.NewSwagger(jsonFile)
 	jsonSwagger := fetch.JsonParser()
 	testGenerator := template.NewGenerator(templatePath, "./generated")
 	testGenerator.GenerateTestFiles(jsonSwagger)
