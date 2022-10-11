@@ -22,7 +22,7 @@ build: clean init-hooks
 clean:
 	rm -rf ./build/* 
 
-init-hooks:
-	@cp -a hooks/. .git/hooks/
+# init-hooks:
+# 	@cp -a hooks/. .git/hooks/
 
-pre-commit: format lint test build
+# pre-commit: format lint test build
