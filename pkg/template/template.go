@@ -20,7 +20,7 @@ type Template struct {
 	outputFolder string
 }
 
-func NewGenerator(templatePath string, outputDestination string) *Template {
+func NewTemplate(templatePath string, outputDestination string) *Template {
 	return &Template{
 		templatePath: templatePath,
 		outputFolder: outputDestination,

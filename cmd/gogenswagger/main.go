@@ -22,6 +22,6 @@ func main() {
 
 	fetch := swagger.NewSwagger(jsonFile)
 	jsonSwagger := fetch.JsonParser()
-	testGenerator := template.NewGenerator(templatePath, "./generated")
+	testGenerator := template.NewTemplate(templatePath, "./generated")
 	testGenerator.GenerateTestFiles(jsonSwagger)
 }

@@ -2,20 +2,19 @@
 
 ## WIP
 
+currently, work is done to integrate other langauges and improve the test coverage for the project.
+
+## Usage
+
 gogenswagger generates test cases on the basis of swagger json
 
 Place the swagger json file in `./templates` folder as `docs.json`
 
-## Usage
-
-```bash
-gogenswagger [template path] [swagger json path]
-```
-
 ### Running the code
 
 ```bash
-make run
+make build
+./build/gogenswagger [template path] [swagger json path]
 ```
 
 ### Running the linter
