@@ -1,14 +1,12 @@
 # gogenswagger
 
+gogenswagger generates signature for the test cases using the swagger JSON file.
+
 ## WIP
 
 currently, work is done to integrate other langauges and improve the test coverage for the project.
 
 ## Usage
-
-gogenswagger generates test cases on the basis of swagger json
-
-### Running the code
 
 ```bash
 make build
