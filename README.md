@@ -8,8 +8,6 @@ currently, work is done to integrate other langauges and improve the test covera
 
 gogenswagger generates test cases on the basis of swagger json
 
-Place the swagger json file in `./templates` folder as `docs.json`
-
 ### Running the code
 
 ```bash
