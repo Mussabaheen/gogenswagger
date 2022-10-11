@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/Mussabaheen/gotestapi/pkg/fetcher"
-	"github.com/Mussabaheen/gotestapi/pkg/generator"
+	"github.com/Mussabaheen/gogenswagger/pkg/swagger"
+	"github.com/Mussabaheen/gogenswagger/pkg/template"
 )
 
 func main() {
@@ -20,8 +20,8 @@ func main() {
 		log.Fatalf("Swagger json not provided, please provide Swagger JSON file")
 	}
 
-	fetch := fetcher.NewFetcher(jsonFile)
+	fetch := swagger.NewFetcher(jsonFile)
 	jsonSwagger := fetch.JsonParser()
-	testGenerator := generator.NewGenerator(templatePath, "./generated")
+	testGenerator := template.NewGenerator(templatePath, "./generated")
 	testGenerator.GenerateTestFiles(jsonSwagger)
 }
