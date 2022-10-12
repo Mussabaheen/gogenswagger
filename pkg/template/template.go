@@ -31,6 +31,10 @@ func NewTemplate(templatePath string, outputDestination string) *Template {
 
 // GenerateTestFiles generates the test files using the provided template
 func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
+	fileExtension := filepath.Ext(T.templatePath)
+	if fileExtension != ".tmpl" {
+		log.Fatalf("invalid extension provided for template file, file must be *.tmpl")
+	}
 	apiTest := GeneratedTest{
 		GeneratedTests: make(map[string]Test),
 	}

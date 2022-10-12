@@ -17,3 +17,5 @@ vendor/
 generated/
 # ignoring build
 build/
+# ignoring swagger test file
+swagger_test.go

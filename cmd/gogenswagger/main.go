@@ -10,6 +10,10 @@ import (
 
 func main() {
 
+	if len(os.Args) != 3 {
+		log.Fatalf("invalid number of arguments, please provide template path and swagger json path")
+	}
+
 	templatePath := os.Args[1]
 	if templatePath == "" {
 		log.Fatalf("template path cannot be empty")
