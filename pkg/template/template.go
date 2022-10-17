@@ -30,9 +30,9 @@ func NewTemplate(templatePath string, outputDestination string) *Template {
 }
 
 // GenerateTestFiles generates the test files using the provided template
-func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
-	fileExtension := filepath.Ext(T.templatePath)
-	if fileExtension != ".tmpl" {
+func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExtension string) {
+	tmpExtension := filepath.Ext(T.templatePath)
+	if tmpExtension != ".tmpl" {
 		log.Fatalf("invalid extension provided for template file, file must be *.tmpl")
 	}
 	apiTest := GeneratedTest{
@@ -51,7 +51,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Get.Tags[0]] = Test{
 				PackageName: swaggerJson.Paths[k].Get.Tags[0],
-				FileName:    swaggerJson.Paths[k].Get.Tags[0] + "_test.go",
+				FileName:    swaggerJson.Paths[k].Get.Tags[0] + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
@@ -65,7 +65,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Put.Tags[0]] = Test{
 				PackageName: swaggerJson.Paths[k].Put.Tags[0],
-				FileName:    swaggerJson.Paths[k].Put.Tags[0] + "_test.go",
+				FileName:    swaggerJson.Paths[k].Put.Tags[0] + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
@@ -79,7 +79,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Delete.Tags[0]] = Test{
 				PackageName: swaggerJson.Paths[k].Delete.Tags[0],
-				FileName:    swaggerJson.Paths[k].Delete.Tags[0] + "_test.go",
+				FileName:    swaggerJson.Paths[k].Delete.Tags[0] + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
@@ -93,7 +93,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Post.Tags[0]] = Test{
 				PackageName: swaggerJson.Paths[k].Post.Tags[0],
-				FileName:    swaggerJson.Paths[k].Post.Tags[0] + "_test.go",
+				FileName:    swaggerJson.Paths[k].Post.Tags[0] + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
@@ -108,7 +108,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Update.Tags[0]] = Test{
 				PackageName: swaggerJson.Paths[k].Update.Tags[0],
-				FileName:    swaggerJson.Paths[k].Update.Tags[0] + "_test.go",
+				FileName:    swaggerJson.Paths[k].Update.Tags[0] + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
@@ -122,10 +122,16 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson) {
 		if err != nil {
 			log.Fatalf("Unable to parse data into template: %v\n", err)
 		}
-		formatted, err := format.Source(processed.Bytes())
-		if err != nil {
-			log.Fatalf("Could not format processed template: %v\n", err)
+		var formatted []byte
+		if testExtension == "go" {
+			formatted, err = format.Source(processed.Bytes())
+			if err != nil {
+				log.Fatalf("Could not format processed template: %v\n", err)
+			}
+		} else {
+			formatted = processed.Bytes()
 		}
+
 		directoryPath := T.outputFolder + "/" + Api.PackageName + "/"
 		if err := os.MkdirAll(directoryPath, os.ModePerm); err != nil {
 			log.Fatalf("Could not create directories : %v \n", err)

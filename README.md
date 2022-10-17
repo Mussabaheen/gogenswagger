@@ -10,7 +10,7 @@ currently, work is done to integrate other langauges and improve the test covera
 
 ```bash
 make build
-./build/gogenswagger [template path] [swagger json path]
+./build/gogenswagger [swagger json path]
 ```
 
 ### Running the linter
