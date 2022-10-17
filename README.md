@@ -21,9 +21,11 @@ make lint
 
 ## Supported Programming Languages
 
-| Supported Language | Description      |
-| ------------------ | ---------------- |
-| Go                 | `*.go` extension |
+| Supported Language | Description             |
+| ------------------ | ----------------------- |
+| Go                 | `*.go` extension        |
+| ------------------ | ----------------        |
+| Javascript         | `*.js` extension (chai) |
 
 ## Contributing
 
