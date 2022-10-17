@@ -24,7 +24,6 @@ make lint
 | Supported Language | Description             |
 | ------------------ | ----------------------- |
 | Go                 | `*.go` extension        |
-| ------------------ | ----------------        |
 | Javascript         | `*.js` extension (chai) |
 
 ## Contributing
