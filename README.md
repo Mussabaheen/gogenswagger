@@ -1,6 +1,6 @@
 # gogenswagger
 
-gogenswagger generates signature for the test cases using the swagger JSON file.
+gogenswagger generates signature and boiler plate code for the test cases using the swagger JSON file.
 
 ## WIP
 
