@@ -2,18 +2,25 @@
 // Written by Malik Mussabeheen
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../server');
 let should = chai.should();
 
 chai.use(chaiHttp);
 
 describe('{{.PackageName}}', () => {
-    beforeEach((done) => { //Before each test we perform some operation  
+    beforeEach((done) => { // Before each test we perform some operation  
     });
 
 {{range .TestCases }}
     describe('{{.Name}}', () => {
-        it('{{.Description}}',(done)=>{});
+        it('{{.Description}}',(done)=>{
+                  chai
+                    .request("") // add your server url 
+                    .get("{{.Endpoint}}")
+                    .end((err, res) => {
+                        res.should.have.status({{.ResponseCode}});
+                    done();
+                });
+            });
     });
 {{end}}
 });

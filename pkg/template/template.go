@@ -43,8 +43,11 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 			tempTestCase := apiTest.GeneratedTests[swaggerJson.Paths[k].Get.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Get.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name:        "Test" + "Get" + strings.ReplaceAll(swaggerJson.Paths[k].Get.OperationID, "-", "_") + "Returns" + key,
-					Description: swaggerJson.Paths[k].Get.Description,
+					Name:         "Test" + "Get" + strings.ReplaceAll(swaggerJson.Paths[k].Get.OperationID, "-", "_") + "Returns" + key,
+					Description:  swaggerJson.Paths[k].Get.Description,
+					Endpoint:     k,
+					ResponseCode: key,
+					Method:       "Get",
 				})
 
 			}
@@ -59,8 +62,11 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 			tempTestCase := apiTest.GeneratedTests[swaggerJson.Paths[k].Put.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Put.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name:        "Test" + "Put" + strings.ReplaceAll(swaggerJson.Paths[k].Put.OperationID, "-", "_") + "Returns" + key,
-					Description: swaggerJson.Paths[k].Put.Description,
+					Name:         "Test" + "Put" + strings.ReplaceAll(swaggerJson.Paths[k].Put.OperationID, "-", "_") + "Returns" + key,
+					Description:  swaggerJson.Paths[k].Put.Description,
+					Endpoint:     k,
+					ResponseCode: key,
+					Method:       "Put",
 				})
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Put.Tags[0]] = Test{
@@ -73,8 +79,11 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 			tempTestCase := apiTest.GeneratedTests[swaggerJson.Paths[k].Delete.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Delete.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name:        "Test" + "Delete" + strings.ReplaceAll(swaggerJson.Paths[k].Delete.OperationID, "-", "_") + "Returns" + key,
-					Description: swaggerJson.Paths[k].Delete.Description,
+					Name:         "Test" + "Delete" + strings.ReplaceAll(swaggerJson.Paths[k].Delete.OperationID, "-", "_") + "Returns" + key,
+					Description:  swaggerJson.Paths[k].Delete.Description,
+					Endpoint:     k,
+					ResponseCode: key,
+					Method:       "Delete",
 				})
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Delete.Tags[0]] = Test{
@@ -87,8 +96,11 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 			tempTestCase := apiTest.GeneratedTests[swaggerJson.Paths[k].Post.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Post.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name:        "Test" + "Post" + strings.ReplaceAll(swaggerJson.Paths[k].Post.OperationID, "-", "_") + "Returns" + key,
-					Description: swaggerJson.Paths[k].Post.Description,
+					Name:         "Test" + "Post" + strings.ReplaceAll(swaggerJson.Paths[k].Post.OperationID, "-", "_") + "Returns" + key,
+					Description:  swaggerJson.Paths[k].Post.Description,
+					Endpoint:     k,
+					ResponseCode: key,
+					Method:       "Post",
 				})
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Post.Tags[0]] = Test{
@@ -101,8 +113,11 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 			tempTestCase := apiTest.GeneratedTests[swaggerJson.Paths[k].Update.Tags[0]].TestCases
 			for key := range swaggerJson.Paths[k].Update.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
-					Name:        "Test" + "Update" + strings.ReplaceAll(swaggerJson.Paths[k].Update.OperationID, "-", "_") + "Returns" + key,
-					Description: swaggerJson.Paths[k].Update.Description,
+					Name:         "Test" + "Update" + strings.ReplaceAll(swaggerJson.Paths[k].Update.OperationID, "-", "_") + "Returns" + key,
+					Description:  swaggerJson.Paths[k].Update.Description,
+					Endpoint:     k,
+					ResponseCode: key,
+					Method:       "Update",
 				})
 			}
 
