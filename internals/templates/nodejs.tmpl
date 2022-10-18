@@ -2,7 +2,6 @@
 // Written by Malik Mussabeheen
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../server');
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -13,8 +12,15 @@ describe('{{.PackageName}}', () => {
 
 {{range .TestCases }}
     describe('{{.Name}}', () => {
-        // endpoint for this testcase : {{.Endpoint}}
-        it('{{.Description}}',(done)=>{});
+        it('{{.Description}}',(done)=>{
+                  chai
+                    .request("") // add your server url 
+                    .get("{{.Endpoint}}")
+                    .end((err, res) => {
+                        res.should.have.status({{.ResponseCode}});
+                    done();
+                });
+            });
     });
 {{end}}
 });

@@ -12,7 +12,9 @@ type Test struct {
 }
 
 type TestCase struct {
-	Name        string // Name of the test case
-	Description string // Description of the test case
-	Endpoint    string // Endpoint used for the test case
+	Name         string // Name of the test case
+	Description  string // Description of the test case
+	Endpoint     string // Endpoint used for the test case
+	Method       string // Method for the test case
+	ResponseCode string // Response code expected for test case
 }
