@@ -8,11 +8,12 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 describe('{{.PackageName}}', () => {
-    beforeEach((done) => { //Before each test we perform some operation  
+    beforeEach((done) => { // Before each test we perform some operation  
     });
 
 {{range .TestCases }}
     describe('{{.Name}}', () => {
+        // endpoint for this testcase : {{.Endpoint}}
         it('{{.Description}}',(done)=>{});
     });
 {{end}}

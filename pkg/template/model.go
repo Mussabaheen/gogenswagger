@@ -14,4 +14,5 @@ type Test struct {
 type TestCase struct {
 	Name        string // Name of the test case
 	Description string // Description of the test case
+	Endpoint    string // Endpoint used for the test case
 }

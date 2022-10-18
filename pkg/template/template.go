@@ -45,6 +45,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:        "Test" + "Get" + strings.ReplaceAll(swaggerJson.Paths[k].Get.OperationID, "-", "_") + "Returns" + key,
 					Description: swaggerJson.Paths[k].Get.Description,
+					Endpoint:    k,
 				})
 
 			}
@@ -61,6 +62,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:        "Test" + "Put" + strings.ReplaceAll(swaggerJson.Paths[k].Put.OperationID, "-", "_") + "Returns" + key,
 					Description: swaggerJson.Paths[k].Put.Description,
+					Endpoint:    k,
 				})
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Put.Tags[0]] = Test{
@@ -75,6 +77,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:        "Test" + "Delete" + strings.ReplaceAll(swaggerJson.Paths[k].Delete.OperationID, "-", "_") + "Returns" + key,
 					Description: swaggerJson.Paths[k].Delete.Description,
+					Endpoint:    k,
 				})
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Delete.Tags[0]] = Test{
@@ -89,6 +92,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:        "Test" + "Post" + strings.ReplaceAll(swaggerJson.Paths[k].Post.OperationID, "-", "_") + "Returns" + key,
 					Description: swaggerJson.Paths[k].Post.Description,
+					Endpoint:    k,
 				})
 			}
 			apiTest.GeneratedTests[swaggerJson.Paths[k].Post.Tags[0]] = Test{
@@ -103,6 +107,7 @@ func (T *Template) GenerateTestFiles(swaggerJson *swagger.SwaggerJson, testExten
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:        "Test" + "Update" + strings.ReplaceAll(swaggerJson.Paths[k].Update.OperationID, "-", "_") + "Returns" + key,
 					Description: swaggerJson.Paths[k].Update.Description,
+					Endpoint:    k,
 				})
 			}
 

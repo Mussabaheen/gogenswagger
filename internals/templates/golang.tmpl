@@ -6,5 +6,6 @@ import "testing"
 
 {{range .TestCases }}
         // {{.Description}}
+        // endpoint for this testcase : {{.Endpoint}}
         func {{.Name}}(t *testing.T){}
 {{end}}
