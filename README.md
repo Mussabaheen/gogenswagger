@@ -2,10 +2,6 @@
 
 gogenswagger generates signature and boiler plate code for the test cases using the swagger JSON file.
 
-## WIP
-
-currently, work is done to integrate other langauges and improve the test coverage for the project.
-
 ## Usage
 
 ```bash
