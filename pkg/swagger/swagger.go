@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 )
 
+// Swagger handles the swagger file
 type Swagger struct {
 	fileLocation string
 }
@@ -21,8 +22,8 @@ func NewSwagger(fileLocation string) *Swagger {
 	}
 }
 
-// JsonParser checks, loads and Parses the JSON file into SwaggerJson struct
-func (S *Swagger) JsonParser() *SwaggerJson {
+// JSONParser checks, loads and Parses the JSON file into JSON struct
+func (S *Swagger) JSONParser() *JSON {
 	fileExtension := filepath.Ext(S.fileLocation)
 	if fileExtension != ".json" {
 		log.Fatalf("invalid extension provided for swagger file, file must be *.json")
@@ -32,19 +33,19 @@ func (S *Swagger) JsonParser() *SwaggerJson {
 	if err != nil {
 		log.Fatalf("unable to open swagger JSON file %v\n", err)
 	}
-	fmt.Println("JSON file loaded succesfully!")
+	fmt.Println("JSON file loaded successfully!")
 	defer jsonFile.Close()
 
 	byteValue, err := io.ReadAll(jsonFile)
 	if err != nil {
 		log.Fatalf("unable to read data from swagger JSON file %v\n", err)
 	}
-	var swagger SwaggerJson
+	var swagger JSON
 
 	err = json.Unmarshal(byteValue, &swagger)
 
 	if err != nil {
-		log.Fatalf("unable to load data into SwaggerJson struct %v\n", err)
+		log.Fatalf("unable to load data into JSON struct %v\n", err)
 	}
 	return &swagger
 }

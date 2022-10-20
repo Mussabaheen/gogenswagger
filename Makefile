@@ -15,7 +15,7 @@ format:
 	@go fmt ./...
 
 
-build: clean init-hooks
+build: clean
 	$(info 📦 Building...)
 	go build -o build/ ./...
 

@@ -12,10 +12,10 @@ import (
 func TestTemplate_GetGenerateTestFiles(t *testing.T) {
 
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
-	json := swagger.SwaggerJson{
+	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
 			"get": {
-				Get: &swagger.RestApi{
+				Get: &swagger.RestAPI{
 					Description: "This is a comment",
 					Tags:        []string{"server"},
 					OperationID: "createserverinstance",
@@ -40,10 +40,10 @@ func TestTemplate_GetGenerateTestFiles(t *testing.T) {
 func TestTemplate_PostGenerateTestFiles(t *testing.T) {
 
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
-	json := swagger.SwaggerJson{
+	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
 			"post": {
-				Post: &swagger.RestApi{
+				Post: &swagger.RestAPI{
 					Description: "This is a comment",
 					Tags:        []string{"server"},
 					OperationID: "createserverinstance",
@@ -69,10 +69,10 @@ func TestTemplate_PostGenerateTestFiles(t *testing.T) {
 func TestTemplate_UpdateGenerateTestFiles(t *testing.T) {
 
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
-	json := swagger.SwaggerJson{
+	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
 			"update": {
-				Update: &swagger.RestApi{
+				Update: &swagger.RestAPI{
 					Description: "This is a comment",
 					Tags:        []string{"server"},
 					OperationID: "createserverinstance",
@@ -97,10 +97,10 @@ func TestTemplate_UpdateGenerateTestFiles(t *testing.T) {
 func TestTemplate_DeleteGenerateTestFiles(t *testing.T) {
 
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
-	json := swagger.SwaggerJson{
+	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
 			"Delete": {
-				Delete: &swagger.RestApi{
+				Delete: &swagger.RestAPI{
 					Description: "This is a comment",
 					Tags:        []string{"server"},
 					OperationID: "createserverinstance",
@@ -125,10 +125,10 @@ func TestTemplate_DeleteGenerateTestFiles(t *testing.T) {
 func TestTemplate_PutGenerateTestFiles(t *testing.T) {
 
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
-	json := swagger.SwaggerJson{
+	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
 			"put": {
-				Put: &swagger.RestApi{
+				Put: &swagger.RestAPI{
 					Description: "This is a comment",
 					Tags:        []string{"server"},
 					OperationID: "createserverinstance",
