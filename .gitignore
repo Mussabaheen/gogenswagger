@@ -9,7 +9,7 @@
 *.test
 # Output of the go coverage tool
 *.out
-# ignoring Json Files
+# ignoring JSON Files
 *.json
 # ignoring generated
 generated/

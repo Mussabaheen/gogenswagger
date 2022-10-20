@@ -1,3 +1,4 @@
+// package main is the entry point for the gogenswagger
 package main
 
 import (
@@ -30,7 +31,7 @@ func main() {
 	templatePath, fileExtension := language.Select()
 
 	fetch := swagger.NewSwagger(jsonFile)
-	jsonSwagger := fetch.JsonParser()
+	jsonSwagger := fetch.JSONParser()
 
 	testGenerator := template.NewTemplate(templatePath, "./generated")
 	testGenerator.GenerateTestFiles(jsonSwagger, fileExtension)
