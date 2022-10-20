@@ -1,5 +1,7 @@
 # gogenswagger
 
+![gogenswagger](https://user-images.githubusercontent.com/30601645/196947481-17e87968-4cc8-4cc0-8a88-0f10684d236e.gif)
+
 gogenswagger generates signature and boiler plate code for the test cases using the swagger JSON file.
 
 ## Usage
