@@ -8,6 +8,8 @@ gogenswagger generates signature and boiler plate code for the test cases using 
 
 ```bash
 make build
+```
+```bash
 ./build/gogenswagger [swagger json path]
 ```
 
