@@ -2,10 +2,6 @@ test:
 	$(info 🧪 Testing...)
 	go test ./... -short
 
-run:
-	$(info 🧪 Running the gogenapi)
-	go run cmd/go-test-api/main.go
-
 lint:
 	$(info 🧪 Checking the lint)
 	golangci-lint run ./...

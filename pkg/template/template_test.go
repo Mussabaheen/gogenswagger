@@ -10,7 +10,6 @@ import (
 )
 
 func TestTemplate_GetGenerateTestFiles(t *testing.T) {
-
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
 	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
@@ -34,13 +33,10 @@ func TestTemplate_GetGenerateTestFiles(t *testing.T) {
 	assert.Nil(t, err, "unable to open generated file")
 	defer goFile.Close()
 	defer os.Remove("../../generated/server/server_test.go")
-
 	_, err = io.ReadAll(goFile)
 	assert.Nil(t, err, "unable to open file")
-	// assert.Equal(t, expectedfile, string(byteValue))
 }
 func TestTemplate_PostGenerateTestFiles(t *testing.T) {
-
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
 	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
@@ -66,11 +62,9 @@ func TestTemplate_PostGenerateTestFiles(t *testing.T) {
 	defer os.Remove("../../generated/server/server_test.go")
 	_, err = io.ReadAll(goFile)
 	assert.Nil(t, err, "unable to open file")
-	// assert.Equal(t, expectedfile, string(byteValue))
 }
 
 func TestTemplate_UpdateGenerateTestFiles(t *testing.T) {
-
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
 	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
@@ -96,10 +90,8 @@ func TestTemplate_UpdateGenerateTestFiles(t *testing.T) {
 	defer os.Remove("../../generated/server/server_test.go")
 	_, err = io.ReadAll(goFile)
 	assert.Nil(t, err, "unable to open file")
-	// assert.Equal(t, expectedfile, string(byteValue))
 }
 func TestTemplate_DeleteGenerateTestFiles(t *testing.T) {
-
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
 	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
@@ -125,10 +117,8 @@ func TestTemplate_DeleteGenerateTestFiles(t *testing.T) {
 	defer os.Remove("../../generated/server/server_test.go")
 	_, err = io.ReadAll(goFile)
 	assert.Nil(t, err, "unable to open file")
-	// assert.Equal(t, expectedfile, string(byteValue))
 }
 func TestTemplate_PutGenerateTestFiles(t *testing.T) {
-
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
 	json := swagger.JSON{
 		Paths: map[string]swagger.Path{
@@ -154,5 +144,4 @@ func TestTemplate_PutGenerateTestFiles(t *testing.T) {
 	defer os.Remove("../../generated/server/server_test.go")
 	_, err = io.ReadAll(goFile)
 	assert.Nil(t, err, "unable to open file")
-	// assert.Equal(t, expectedfile, string(byteValue))
 }
