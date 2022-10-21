@@ -20,6 +20,7 @@ clean:
 
 init-hooks:
 	@cp -a hooks/. .git/hooks/
+	@chmod ug+x hooks/*
 	@chmod ug+x .git/hooks/*
 
 pre-commit: format lint test build
