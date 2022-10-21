@@ -35,7 +35,6 @@ func TestTemplate_GetGenerateTestFiles(t *testing.T) {
 	defer os.Remove("../../generated/server/server_test.go")
 	_, err = io.ReadAll(goFile)
 	assert.Nil(t, err, "unable to open file")
-	// assert.Equal(t, expectedfile, string(byteValue))
 }
 func TestTemplate_PostGenerateTestFiles(t *testing.T) {
 	template := NewTemplate("../../internals/templates/golang.tmpl", "../../generated")
