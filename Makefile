@@ -15,14 +15,14 @@ format:
 	@go fmt ./...
 
 
-build: clean
+build: clean init-hooks
 	$(info 📦 Building...)
 	go build -o build/ ./...
 
 clean:
 	rm -rf ./build/* 
 
-# init-hooks:
-# 	@cp -a hooks/. .git/hooks/
+init-hooks:
+	@cp -a hooks/. .git/hooks/
 
-# pre-commit: format lint test build
+pre-commit: format lint test build
