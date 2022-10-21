@@ -39,9 +39,13 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 	apiTest := GeneratedTest{
 		GeneratedTests: make(map[string]Test),
 	}
+	packageName := "test"
 	for k := range swaggerJSON.Paths {
 		if swaggerJSON.Paths[k].Get != nil {
-			tempTestCase := apiTest.GeneratedTests[swaggerJSON.Paths[k].Get.Tags[0]].TestCases
+			if len(swaggerJSON.Paths[k].Get.Tags) != 0 {
+				packageName = swaggerJSON.Paths[k].Get.Tags[0]
+			}
+			tempTestCase := apiTest.GeneratedTests[packageName].TestCases
 			for key := range swaggerJSON.Paths[k].Get.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:         "Test" + "Get" + strings.ReplaceAll(swaggerJSON.Paths[k].Get.OperationID, "-", "_") + "Returns" + key,
@@ -53,14 +57,17 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 
 			}
 
-			apiTest.GeneratedTests[swaggerJSON.Paths[k].Get.Tags[0]] = Test{
-				PackageName: swaggerJSON.Paths[k].Get.Tags[0],
-				FileName:    swaggerJSON.Paths[k].Get.Tags[0] + "_test." + testExtension,
+			apiTest.GeneratedTests[packageName] = Test{
+				PackageName: packageName,
+				FileName:    packageName + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
 		if swaggerJSON.Paths[k].Put != nil {
-			tempTestCase := apiTest.GeneratedTests[swaggerJSON.Paths[k].Put.Tags[0]].TestCases
+			if len(swaggerJSON.Paths[k].Put.Tags) != 0 {
+				packageName = swaggerJSON.Paths[k].Put.Tags[0]
+			}
+			tempTestCase := apiTest.GeneratedTests[packageName].TestCases
 			for key := range swaggerJSON.Paths[k].Put.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:         "Test" + "Put" + strings.ReplaceAll(swaggerJSON.Paths[k].Put.OperationID, "-", "_") + "Returns" + key,
@@ -70,14 +77,17 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 					Method:       "Put",
 				})
 			}
-			apiTest.GeneratedTests[swaggerJSON.Paths[k].Put.Tags[0]] = Test{
-				PackageName: swaggerJSON.Paths[k].Put.Tags[0],
-				FileName:    swaggerJSON.Paths[k].Put.Tags[0] + "_test." + testExtension,
+			apiTest.GeneratedTests[packageName] = Test{
+				PackageName: packageName,
+				FileName:    packageName + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
 		if swaggerJSON.Paths[k].Delete != nil {
-			tempTestCase := apiTest.GeneratedTests[swaggerJSON.Paths[k].Delete.Tags[0]].TestCases
+			if len(swaggerJSON.Paths[k].Delete.Tags) != 0 {
+				packageName = swaggerJSON.Paths[k].Delete.Tags[0]
+			}
+			tempTestCase := apiTest.GeneratedTests[packageName].TestCases
 			for key := range swaggerJSON.Paths[k].Delete.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:         "Test" + "Delete" + strings.ReplaceAll(swaggerJSON.Paths[k].Delete.OperationID, "-", "_") + "Returns" + key,
@@ -87,14 +97,17 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 					Method:       "Delete",
 				})
 			}
-			apiTest.GeneratedTests[swaggerJSON.Paths[k].Delete.Tags[0]] = Test{
-				PackageName: swaggerJSON.Paths[k].Delete.Tags[0],
-				FileName:    swaggerJSON.Paths[k].Delete.Tags[0] + "_test." + testExtension,
+			apiTest.GeneratedTests[packageName] = Test{
+				PackageName: packageName,
+				FileName:    packageName + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
 		if swaggerJSON.Paths[k].Post != nil {
-			tempTestCase := apiTest.GeneratedTests[swaggerJSON.Paths[k].Post.Tags[0]].TestCases
+			if len(swaggerJSON.Paths[k].Post.Tags) != 0 {
+				packageName = swaggerJSON.Paths[k].Post.Tags[0]
+			}
+			tempTestCase := apiTest.GeneratedTests[packageName].TestCases
 			for key := range swaggerJSON.Paths[k].Post.Responses {
 				tempTestCase = append(tempTestCase, TestCase{
 					Name:         "Test" + "Post" + strings.ReplaceAll(swaggerJSON.Paths[k].Post.OperationID, "-", "_") + "Returns" + key,
@@ -104,9 +117,9 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 					Method:       "Post",
 				})
 			}
-			apiTest.GeneratedTests[swaggerJSON.Paths[k].Post.Tags[0]] = Test{
-				PackageName: swaggerJSON.Paths[k].Post.Tags[0],
-				FileName:    swaggerJSON.Paths[k].Post.Tags[0] + "_test." + testExtension,
+			apiTest.GeneratedTests[packageName] = Test{
+				PackageName: packageName,
+				FileName:    packageName + "_test." + testExtension,
 				TestCases:   tempTestCase,
 			}
 		}
