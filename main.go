@@ -6,9 +6,9 @@ import (
 	"log"
 	"os"
 
+	"github.com/Mussabaheen/gogenswagger/internals/template"
 	"github.com/Mussabaheen/gogenswagger/pkg/language"
 	"github.com/Mussabaheen/gogenswagger/pkg/swagger"
-	"github.com/Mussabaheen/gogenswagger/pkg/template"
 )
 
 func main() {
@@ -28,11 +28,11 @@ func main() {
 	fmt.Scanln(&selectLanguage)
 
 	language := language.NewLangugae(selectLanguage)
-	templatePath, fileExtension := language.Select()
+	tmplPath, fileExtension := language.Select()
 
 	fetch := swagger.NewSwagger(jsonFile)
 	jsonSwagger := fetch.JSONParser()
 
-	testGenerator := template.NewTemplate(templatePath, "./generated")
+	testGenerator := template.NewTemplate(tmplPath, "./generated")
 	testGenerator.GenerateTestFiles(jsonSwagger, fileExtension)
 }
