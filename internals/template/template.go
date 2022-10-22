@@ -139,7 +139,7 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 	}
 	tmplBuffer, err := Templates.ReadFile(T.templatePath)
 	if err != nil {
-		log.Fatalf("unable to read tmpl from embedded files")
+		log.Fatalf("unable to read tmpl from embedded files, %v\n", err)
 	}
 	for _, API := range apiTest.GeneratedTests {
 		templates := template.Must(template.New("tmpl").Funcs(sprig.FuncMap()).Parse(string(tmplBuffer)))
