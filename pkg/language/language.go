@@ -4,8 +4,8 @@ package language
 import "log"
 
 var (
-	nodejs = "internals/templates/nodejs.tmpl"
-	golang = "internals/templates/golang.tmpl"
+	nodejs = "templates/nodejs.tmpl"
+	golang = "templates/golang.tmpl"
 )
 
 // Language handles the selection for language

@@ -9,7 +9,6 @@ import (
 	"html/template"
 	"log"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/Masterminds/sprig"
@@ -23,7 +22,7 @@ type Template struct {
 }
 
 // NewTemplate creates a new Template service
-func NewTemplate(templatePath string, outputDestination string) *Template {
+func NewTemplate(templatePath, outputDestination string) *Template {
 	return &Template{
 		templatePath: templatePath,
 		outputFolder: outputDestination,
@@ -32,10 +31,6 @@ func NewTemplate(templatePath string, outputDestination string) *Template {
 
 // GenerateTestFiles generates the test files using the provided template
 func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension string) {
-	tmpExtension := filepath.Ext(T.templatePath)
-	if tmpExtension != ".tmpl" {
-		log.Fatalf("invalid extension provided for template file, file must be *.tmpl")
-	}
 	apiTest := GeneratedTest{
 		GeneratedTests: make(map[string]Test),
 	}
@@ -142,12 +137,14 @@ func (T *Template) GenerateTestFiles(swaggerJSON *swagger.JSON, testExtension st
 			}
 		}
 	}
-
+	tmplBuffer, err := Templates.ReadFile(T.templatePath)
+	if err != nil {
+		log.Fatalf("unable to read tmpl from embedded files, %v\n", err)
+	}
 	for _, API := range apiTest.GeneratedTests {
-		fileName := filepath.Base(T.templatePath)
-		tmpl := template.Must(template.New("").Funcs(sprig.FuncMap()).ParseFiles(T.templatePath))
+		templates := template.Must(template.New("tmpl").Funcs(sprig.FuncMap()).Parse(string(tmplBuffer)))
 		var processed bytes.Buffer
-		err := tmpl.ExecuteTemplate(&processed, fileName, API)
+		err := templates.ExecuteTemplate(&processed, "tmpl", API)
 		if err != nil {
 			log.Fatalf("Unable to parse data into template: %v\n", err)
 		}
