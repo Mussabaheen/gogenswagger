@@ -3,7 +3,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 
 	"github.com/Mussabaheen/gogenswagger/internals/template"
@@ -19,23 +18,20 @@ var (
 
 func main() {
 	// fileExtension represents the arg with flag -l
-	fileExtension := flag.String("l", "go", fileExtensionUsage)
+	fileExtension := flag.String("language", "go", fileExtensionUsage)
 
 	// swaggerFile represents the arg with flag -s
-	swaggerFile := flag.String("s", "", swaggerFileUsage)
+	swaggerFile := flag.String("json", "", swaggerFileUsage)
 
 	// outputPath represents the arg with flat -o
-	outputPath := flag.String("o", "./generated", outputPathUsage)
+	outputPath := flag.String("output", "./generated", outputPathUsage)
 	flag.Parse()
-	fmt.Println(*fileExtension, *swaggerFile)
 
 	if *swaggerFile == "" {
 		log.Fatalf("Swagger json not provided, please provide Swagger JSON file with -s flag")
 	}
 
-	var selectLanguage string
-
-	language := language.NewLangugae(selectLanguage)
+	language := language.NewLangugae(*fileExtension)
 	tmplPath, fileExtn := language.Select()
 
 	fetch := swagger.NewSwagger(*swaggerFile)
