@@ -23,9 +23,9 @@ func NewLangugae(option string) *Language {
 // Select returns the language using the option by user
 func (L *Language) Select() (string, string) {
 	switch L.option {
-	case "1":
+	case "js":
 		return nodejs, "js"
-	case "2":
+	case "go":
 		return golang, "go"
 	default:
 		log.Fatalf("no language selected")
