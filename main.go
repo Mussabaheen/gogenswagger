@@ -2,37 +2,41 @@
 package main
 
 import (
-	"fmt"
+	"flag"
 	"log"
-	"os"
 
 	"github.com/Mussabaheen/gogenswagger/internals/template"
 	"github.com/Mussabaheen/gogenswagger/pkg/language"
 	"github.com/Mussabaheen/gogenswagger/pkg/swagger"
 )
 
+var (
+	fileExtensionUsage = "Specify the language extension, currently supported languages js and go"
+	swaggerFileUsage   = "Specify the Swagger JSON file path"
+	outputPathUsage    = "Specify the path for generated test packages"
+)
+
 func main() {
+	// fileExtension represents the arg with flag -l
+	fileExtension := flag.String("language", "go", fileExtensionUsage)
 
-	if len(os.Args) != 2 {
-		log.Fatalf("invalid number of arguments, please provide template path and swagger json path")
+	// swaggerFile represents the arg with flag -s
+	swaggerFile := flag.String("json", "", swaggerFileUsage)
+
+	// outputPath represents the arg with flat -o
+	outputPath := flag.String("output", "./generated", outputPathUsage)
+	flag.Parse()
+
+	if *swaggerFile == "" {
+		log.Fatalf("Swagger json not provided, please provide Swagger JSON file with -s flag")
 	}
 
-	jsonFile := os.Args[1]
-	if jsonFile == "" {
-		log.Fatalf("Swagger json not provided, please provide Swagger JSON file")
-	}
+	language := language.NewLangugae(*fileExtension)
+	tmplPath, fileExtn := language.Select()
 
-	fmt.Println("Kindly select language in which test should be generated. \n 1 : Node.js \n 2 : GoLang ")
-	var selectLanguage string
-	fmt.Print("Enter your option: ")
-	fmt.Scanln(&selectLanguage)
-
-	language := language.NewLangugae(selectLanguage)
-	tmplPath, fileExtension := language.Select()
-
-	fetch := swagger.NewSwagger(jsonFile)
+	fetch := swagger.NewSwagger(*swaggerFile)
 	jsonSwagger := fetch.JSONParser()
 
-	testGenerator := template.NewTemplate(tmplPath, "./generated")
-	testGenerator.GenerateTestFiles(jsonSwagger, fileExtension)
+	testGenerator := template.NewTemplate(tmplPath, *outputPath)
+	testGenerator.GenerateTestFiles(jsonSwagger, fileExtn)
 }

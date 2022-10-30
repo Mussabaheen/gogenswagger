@@ -1,7 +1,9 @@
 // Package language selects the language
 package language
 
-import "log"
+import (
+	"log"
+)
 
 var (
 	nodejs = "templates/nodejs.tmpl"
@@ -10,22 +12,22 @@ var (
 
 // Language handles the selection for language
 type Language struct {
-	option string
+	extension string
 }
 
 // NewLangugae creates a new Language Service
-func NewLangugae(option string) *Language {
+func NewLangugae(extension string) *Language {
 	return &Language{
-		option: option,
+		extension: extension,
 	}
 }
 
-// Select returns the language using the option by user
+// Select returns the language using the extension by user
 func (L *Language) Select() (string, string) {
-	switch L.option {
-	case "1":
+	switch L.extension {
+	case "js":
 		return nodejs, "js"
-	case "2":
+	case "go":
 		return golang, "go"
 	default:
 		log.Fatalf("no language selected")
