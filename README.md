@@ -28,9 +28,7 @@ run the project
   go run main.go
 ```
 
-## Installation
-
-Install my-project with npm
+## Creating build
 
 ```bash
   cd gogenswagger
